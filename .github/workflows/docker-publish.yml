@@ -71,6 +71,9 @@ jobs:
       - name: Generate and Push Git Tag for New Version
         id: versioning
         run: |
+          # Fetch all tags
+          git fetch --tags
+
           # Get the latest tag
           latest_tag=$(git tag --sort=-v:refname | head -n 1)
 
@@ -78,7 +81,6 @@ jobs:
           if [ -z "$latest_tag" ]; then
             new_tag="v0.1"
           else
-            # Remove the leading 'v' and increment by 0.1
             version_num=$(echo $latest_tag | sed 's/v//')
             new_version=$(printf "%.1f" $(echo "$version_num + 0.1" | bc))
             new_tag="v${new_version}"
@@ -86,11 +88,14 @@ jobs:
 
           echo "Creating new tag: $new_tag"
 
-          # Push the tag to remote
-          git tag $new_tag
-          git push origin $new_tag
+          # Only create and push if it doesn't already exist
+          if git rev-parse "$new_tag" >/dev/null 2>&1; then
+            echo "Tag $new_tag already exists, skipping creation"
+          else
+            git tag $new_tag
+            git push origin $new_tag
+          fi
 
-          # Set output for next steps
           echo "full_tag=$new_tag" >> $GITHUB_OUTPUT
 
       - name: Build the Docker image

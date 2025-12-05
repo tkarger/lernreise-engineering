@@ -104,5 +104,5 @@ jobs:
 
       - name: Push the Docker image to ACR
         run: |
-          docker push lrengineering.azurecr.io/ipt-spins:${{ steps.versioning.outputs.full_tag }}
-          docker push lrengineering.azurecr.io/ipt-spins:latest
+          docker push tkaRegistry.azurecr.io/ipt-spins:${{ steps.versioning.outputs.full_tag }}
+          docker push tkaRegistry.azurecr.io/ipt-spins:latest

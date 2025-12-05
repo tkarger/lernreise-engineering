@@ -9,6 +9,7 @@ describe("Counter component", () => {
 
     const value = Number(button.textContent.replace("count is ", ""));
     expect(value).toBe(0);
+    expect(button.textContent).not.toBeNull();
     expect(typeof value).toBe("number");
   });
 

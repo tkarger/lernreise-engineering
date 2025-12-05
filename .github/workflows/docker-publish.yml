@@ -100,7 +100,7 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker build -t lrengineering.azurecr.io/ipt-spins:${{ steps.versioning.outputs.full_tag }} -t lrengineering.azurecr.io/ipt-spins:latest .
+          docker build -t tkaRegistry.azurecr.io/ipt-spins:${{ steps.versioning.outputs.full_tag }} -t tkaRegistry.azurecr.io/ipt-spins:latest .
 
       - name: Push the Docker image to ACR
         run: |

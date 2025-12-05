@@ -36,9 +36,15 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Setup
-        uses: nvm install node && npm install
-      - name: execute the unit test
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Execute unit tests
         run: npm test
 
 

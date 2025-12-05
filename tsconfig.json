@@ -9,5 +9,6 @@
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "types": ["jest", "@testing-library/jest-dom"]
-  }
+  },
+  "exclude": ["node_modules", "src/__tests__"]
 }

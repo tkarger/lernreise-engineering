@@ -22,6 +22,7 @@ describe("Counter component", () => {
 
     fireEvent.click(button);
     expect(button).toHaveTextContent("count is 2");
+    expect(button.textContent).not.toBeNull();
   });
 
   test("updated count value remains a number", () => {
@@ -31,5 +32,6 @@ describe("Counter component", () => {
     fireEvent.click(button);
     const value = Number(button.textContent.replace("count is ", ""));
     expect(typeof value).toBe("number");
+    expect(button.textContent).not.toBeNull();
   });
 });
